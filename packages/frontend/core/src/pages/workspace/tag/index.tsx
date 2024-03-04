@@ -17,10 +17,7 @@ export const TagDetail = ({ tagId }: { tagId?: string }) => {
   const currentWorkspace = useService(Workspace);
   const pageMetas = useBlockSuiteDocMeta(currentWorkspace.blockSuiteWorkspace);
 
-  const { tags, filterPageMetaByTag } = useTagMetas(
-    currentWorkspace.blockSuiteWorkspace,
-    pageMetas
-  );
+  const { tags, filterPageMetaByTag } = useTagMetas(pageMetas);
   const tagPageMetas = useMemo(() => {
     if (tagId) {
       return filterPageMetaByTag(tagId);
