@@ -58,7 +58,7 @@ export class NextAuthController {
   @Throttle({
     default: {
       limit: 60,
-      ttl: 60,
+      ttl: 60 * 1000,
     },
   })
   @Get('/challenge')
@@ -73,7 +73,7 @@ export class NextAuthController {
   @Throttle({
     default: {
       limit: 60,
-      ttl: 60,
+      ttl: 60 * 1000,
     },
   })
   @All('*')

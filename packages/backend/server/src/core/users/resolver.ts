@@ -50,7 +50,7 @@ export class UserResolver {
   @Throttle({
     default: {
       limit: 10,
-      ttl: 60,
+      ttl: 60 * 1000,
     },
   })
   @Publicable()
@@ -82,7 +82,7 @@ export class UserResolver {
   @Throttle({
     default: {
       limit: 10,
-      ttl: 60,
+      ttl: 60 * 1000,
     },
   })
   @Query(() => UserOrLimitedUser, {
@@ -115,7 +115,12 @@ export class UserResolver {
     };
   }
 
-  @Throttle({ default: { limit: 10, ttl: 60 } })
+  @Throttle({
+    default: {
+      limit: 10,
+      ttl: 60 * 1000,
+    },
+  })
   @ResolveField(() => UserQuotaType, { name: 'quota', nullable: true })
   async getQuota(@CurrentUser() me: User) {
     const quota = await this.quota.getUserQuota(me.id);
@@ -123,7 +128,12 @@ export class UserResolver {
     return quota.feature;
   }
 
-  @Throttle({ default: { limit: 10, ttl: 60 } })
+  @Throttle({
+    default: {
+      limit: 10,
+      ttl: 60 * 1000,
+    },
+  })
   @ResolveField(() => Int, {
     name: 'invoiceCount',
     description: 'Get user invoice count',
@@ -137,7 +147,7 @@ export class UserResolver {
   @Throttle({
     default: {
       limit: 10,
-      ttl: 60,
+      ttl: 60 * 1000,
     },
   })
   @Mutation(() => UserType, {
@@ -172,7 +182,7 @@ export class UserResolver {
   @Throttle({
     default: {
       limit: 10,
-      ttl: 60,
+      ttl: 60 * 1000,
     },
   })
   @Mutation(() => RemoveAvatar, {
@@ -193,7 +203,7 @@ export class UserResolver {
   @Throttle({
     default: {
       limit: 10,
-      ttl: 60,
+      ttl: 60 * 1000,
     },
   })
   @Mutation(() => DeleteAccount)
